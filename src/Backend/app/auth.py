@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import os
 
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -14,9 +15,9 @@ from .models import User
 # Se reemplazará en la etapa C cuando el flujo esté estable.
 import hashlib
 
-SECRET_KEY = "supersecreto"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+SECRET_KEY = os.getenv("SECRET_KEY", "supersecreto")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
 
 pwd_context = CryptContext(schemes=["bcrypt"])  # se deja para compatibilidad
 security = HTTPBearer()

@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 
 import Navbar from "../Components/Navbar";
+import { API_URL } from "../Services/config";
 
 type TrackStatus = "pending" | "completed" | "cancelled";
 
@@ -23,8 +24,6 @@ type TrackResponse = {
   } | null;
   total_pending_today?: number;
 };
-
-const API_URL = "http://127.0.0.1:8000";
 
 const REFRESH_MS = 5000;
 
